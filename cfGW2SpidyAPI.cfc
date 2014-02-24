@@ -30,7 +30,7 @@ component output=false  {
 		variables.APIURL = trim(arguments.URI) & 'v' & arguments.Version & '/' & arguments.Format & '/';
 		variables.Version = trim(arguments.Version);
 		variables.Format = trim(arguments.Format);
-		
+		return this;
 	}
 
 	/**
@@ -209,6 +209,7 @@ component output=false  {
 
 		httpService.setURL( variables.APIURL & arguments.Method & (len(trim(arguments.URIAppend)) ? '/' & arguments.URIAppend : '' ) );
 		httpService.setMethod( _Verb );
+		httpService.setTimeout( 9000 );
 
 		for(var Key in arguments.Args) {
 			if( structKeyExists(arguments.Args,Key) && !IsNull(arguments.Args[Key]) ) {
